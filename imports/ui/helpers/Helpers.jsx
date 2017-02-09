@@ -8,7 +8,7 @@ class Repeatable extends Component {
 
 	constructor(props) {
 		super(props);
-		
+
 		// Sets the initial state
 		// count: Number of initial statements
 		this.state = {
@@ -35,7 +35,7 @@ class Repeatable extends Component {
 
 		// Iterating through the children of the repeatable component
 		return React.Children.map(children, (child, j) => {
-			
+
 			// First, we check if this child is NOT the defaultRef child
 			if(typeof child.props.defaultRef === 'undefined') {
 
@@ -87,7 +87,7 @@ class Repeatable extends Component {
 // - style
 
 class DataSelect extends Component {
-	
+
 	constructor(props) {
 		super(props);
 
@@ -105,7 +105,7 @@ class DataSelect extends Component {
 	}
 
 	render() {
-		
+
 		let optionVal = '_id';
 		let style = {};
 		if(typeof this.props.optionVal !== 'undefined') optionVal = this.props.optionVal
@@ -131,7 +131,6 @@ class DataSelect extends Component {
 	}
 }
 
-
 // =======
 // Helpers
 // =======
@@ -153,14 +152,25 @@ class Helpers {
 				} else if(typeof refs[key].props !== 'undefined' && typeof refs[key].props.stateValue !== 'undefined') {
 					if(refs[key].props.stateValue === true)
 						refValues[key] = refs[key].state['value'];
-					else	
+					else
 						refValues[key] = refs[key].state[refs[key].props.stateValue];
 				}
 			}
 		}
 		return refValues;
 	}
-	
+
+	static searchArrayByName(arr, name) {
+		console.log(arr,name);
+		for(let i=0; i<arr.length; i++) {
+			let item = arr[i];
+			if(item.hasOwnProperty('name') && item.name == name) {
+				return item;
+			}
+		}
+
+	}
+
 	// Merges the obj2 properties into ojb1. Overwrites any property
 	// that may already exist in obj1
 	static push(obj1,obj2) {
@@ -168,7 +178,7 @@ class Helpers {
 		for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
 		for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
 		return obj3;
-	}	
+	}
 }
 
 export { Repeatable, DataSelect, Helpers };

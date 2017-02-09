@@ -6,6 +6,7 @@ import Main from './layouts/Main.jsx';
 import Home from './components/Home.jsx';
 
 
+
 const Routes = (
 	<Router history={browserHistory}>
 		<Route component={Main}>
